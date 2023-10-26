@@ -14,7 +14,7 @@
 #Copie du fichier app.py
     - name: Copy file with owner and permissions
       ansible.builtin.copy:
-        src: https://github.com/smallpolo/TP-FINAL.git
+        src: my-app
         dest: /home/vagrant/my-app/
         owner: foo
         group: foo
