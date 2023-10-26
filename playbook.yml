@@ -1,39 +1,39 @@
 #Check présence python3-flask
--hosts: all
+- hosts: all
   tasks:
     - package:
         name: python3-flask
         state: present
       
 #Présence /home/vagent/my-app
-    - name: Create a directory if it does not exist
-      ansible.builtin.file:
-        path: /home/vagrant/my-app
-        state: directory
-        mode: '0755'
+      - name: Create a directory if it does not exist
+        ansible.builtin.file:
+          path: /home/vagrant/my-app
+          state: directory
+          mode: '0755'
 #Copie du fichier app.py
-    - name: Copy file with owner and permissions
-      ansible.builtin.copy:
-        src: https://github.com/smallpolo/TP-FINAL.git
-        dest: /home/vagrant/m-app/
-        owner: foo
-        group: foo
-        mode: '0644'
+      - name: Copy file with owner and permissions
+        ansible.builtin.copy:
+          src: https://github.com/smallpolo/TP-FINAL.git
+          dest: /home/vagrant/m-app/
+          owner: foo
+          group: foo
+          mode: '0644'
 
-    - name: Copy file with owner and permissions
-      ansible.builtin.copy:
-        src: https://github.com/smallpolo/TP-FINAL.git
-        dest: /etc/systemd/system/my-app.service
-        owner: foo
-        group: foo
-        mode: '0644'
+      - name: Copy file with owner and permissions
+        ansible.builtin.copy:
+          src: https://github.com/smallpolo/TP-FINAL.git
+          dest: /etc/systemd/system/my-app.service
+          owner: foo
+          group: foo
+          mode: '0644'
 
-    - name: Reload service my-app.service, in all cases
-      ansible.builtin.systemd:
-        name: my-app.service
-        state: reloaded
+      - name: Reload service my-app.service, in all cases
+        ansible.builtin.systemd:
+          name: my-app.service
+          state: reloaded
 
-    - name: Manage the state of program my-app to be in started state
-      community.general.monit:
-        name: my-app
-        state: started
+      - name: Manage the state of program my-app to be in started state
+        community.general.monit:
+          name: my-app
+          state: started
