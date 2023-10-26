@@ -14,18 +14,18 @@
 #Copie du fichier app.py
     - name: Copy file with owner and permissions
       ansible.builtin.copy:
-        src: my-app
+        src: app.py
         dest: /home/vagrant/my-app/
-        owner: foo
-        group: foo
+        owner: vagrant
+        group: vagrant
         mode: '0644'
 
     - name: Copy file with owner and permissions
       ansible.builtin.copy:
         src: my-app.service
         dest: /etc/systemd/system/my-app.service
-        owner: foo
-        group: foo
+        owner: vagrant
+        group: vagrant
         mode: '0644'
 
     - name: Reload service my-app.service, in all cases
