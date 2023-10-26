@@ -15,14 +15,14 @@
     - name: Copy file with owner and permissions
       ansible.builtin.copy:
         src: https://github.com/smallpolo/TP-FINAL.git
-        dest: /home/vagrant/m-app/
+        dest: /home/vagrant/my-app/
         owner: foo
         group: foo
         mode: '0644'
 
     - name: Copy file with owner and permissions
       ansible.builtin.copy:
-        src: https://github.com/smallpolo/TP-FINAL.git
+        src: my-app.service
         dest: /etc/systemd/system/my-app.service
         owner: foo
         group: foo
@@ -34,6 +34,6 @@
         state: reloaded
 
     - name: Manage the state of program my-app to be in started state
-      community.general.monit:
+      ansible.builtin.service:
         name: my-app
         state: started
